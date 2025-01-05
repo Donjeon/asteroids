@@ -1,5 +1,7 @@
 import pygame
 from constants import *
+from circleshape import * 
+from player import *
 
 def main():
     pygame.init()
@@ -9,6 +11,10 @@ def main():
     dt = 0
     frame_rate = 60
 
+    player_x = SCREEN_WIDTH / 2
+    player_y = SCREEN_HEIGHT / 2
+    player_ship = Player(player_x, player_y)
+
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 
     #Game loop
@@ -17,11 +23,21 @@ def main():
             if event.type == pygame.QUIT:
                 return
 
+        player_ship.update(dt)
+
         screen.fill("black")
         fps_counter(screen, py_clock)
+
+        #Player functions
+        
+        player_ship.draw(screen)
+        
+
         pygame.display.flip()
         
         dt = (py_clock.tick(frame_rate))/1000 #Binding game to FPS
+
+    
         
 
 def fps_counter(display_screen, game_clock):
