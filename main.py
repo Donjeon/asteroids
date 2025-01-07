@@ -42,6 +42,8 @@ def main():
         for item in updatable:
             item.update(dt)
 
+
+
         screen.fill("black")
         fps_counter(screen, py_clock)
 
@@ -51,6 +53,11 @@ def main():
         
         for item in drawable:
             item.draw(screen)
+
+        for asteroid in asteroids:
+            if asteroid.is_colliding(player_ship):
+                print("Game over!")
+                exit()
 
         pygame.display.flip()
         
