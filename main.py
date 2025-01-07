@@ -47,6 +47,7 @@ def main():
         for item in updatable:
             item.update(dt)
 
+            
 
 
         screen.fill("black")
@@ -63,6 +64,12 @@ def main():
             if asteroid.is_colliding(player_ship):
                 print("Game over!")
                 exit()
+        
+        for asteroid in asteroids:
+            for shot in shots:
+                if asteroid.is_colliding(shot):
+                    asteroid.split()
+                    shot.kill()
 
         pygame.display.flip()
         
